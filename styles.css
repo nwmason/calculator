@@ -8,6 +8,12 @@
     user-select: none;
 }
 
+a,
+a:visited {
+    text-decoration: none;
+    color: black;  
+}
+
 body {
     background-image: url('img/bg.png');
     background-repeat: no-repeat;
@@ -19,8 +25,10 @@ body {
     height: 100vh;
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 64px;
 }
 
 .calculator-body {
@@ -45,6 +53,7 @@ body {
     height: 96px;
     background-color: #7c99a0;
     border-radius: 16px;
+    box-shadow: 2px 2px 8px 2px inset #3a5e38aa;
 }
 
 .button-row {
@@ -89,4 +98,12 @@ body {
 .calculator-button:active,
 .calculator-equals:active {
     box-shadow: 2px 2px 0 2px inset #888888aa;
+}
+
+.cringe {
+    font-size: 32px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    color: white;
 }
