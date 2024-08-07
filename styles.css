@@ -107,10 +107,24 @@ body {
     transition: 0.2s;
 }
 
-.calculator-button:hover,
-.calculator-equals:hover {
+.calculator-button:hover {
     background-color: #707070aa;
     box-shadow: 2px 2px 0 2px #606060aa;
+}
+
+.calculator-equals:hover {
+    background-color:  #3f497c;
+    box-shadow: 2px 2px 0 2px #2e386b; 
+}
+
+.operations-button:hover {
+    background-color:  #3f7c43;
+    box-shadow: 2px 2px 0 2px #2e6b32;
+}
+
+.delete-button:hover {
+    background-color:  #7c3f3f;
+    box-shadow: 2px 2px 0 2px #6b2e2e; 
 }
 
 .calculator-button:active,
@@ -118,6 +132,8 @@ body {
     box-shadow: 2px 2px 0 2px inset #888888aa;
 }
 
+
+/* let's just hide this at the bottom */
 .cringe {
     font-size: 32px;
     display: flex;
