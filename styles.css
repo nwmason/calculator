@@ -65,6 +65,7 @@ body {
     align-self: flex-end;
     font-size: 24px;
     color: #056100;
+    min-height: 28px;
 }
 
 .results-screen-result {

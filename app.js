@@ -2,12 +2,21 @@ function calculate() {
 
 }
 
-function errorMessage() {
+function errorMessage(error) {
+    finalResults.textContent = error
+    const clear = document.querySelector("#all-clear")
 
+    clear.addEventListener("click", () => {
+        finalResults.textContent = ""
+    })
 }
 
 function appendNumber(number) {
-    workingResults.innerHTML += number
+    if (workingResults.textContent.length > 35) {
+        errorMessage("ERROR: SCREEN OVERFLOW");
+    } else {
+        workingResults.textContent += number;
+    }
 }
 
 function appendOperation(operation) {
@@ -35,6 +44,7 @@ function clearData(clearMethod) {
 
 const buttons = document.querySelectorAll(".calculator-button");
 const workingResults = document.querySelector(".results-screen-typing");
+const finalResults = document.querySelector(".results-screen-result");
 
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", (event) => {
