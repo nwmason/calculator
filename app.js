@@ -19,8 +19,18 @@ function appendOperation(operation) {
     }
 }
 
-function clearData() {
+function clearData(clearMethod) {
+    const currentEquation = workingResults.textContent;
 
+    if (clearMethod === 'c') {
+        if (isNaN(currentEquation.slice(-2))) {
+            workingResults.textContent = currentEquation.slice(0,-3);
+        } else {
+            workingResults.textContent = currentEquation.slice(0, -1);
+        }
+    } else {
+        workingResults.textContent = ""
+    }
 }
 
 const buttons = document.querySelectorAll(".calculator-button");
@@ -37,8 +47,10 @@ for (let i = 0; i < buttons.length; i++) {
         } else if (event.target.id === "decimal") {
 
         } else if (event.target.id === "all-clear" ) {
+            clearData('ac')
 
         } else if (event.target.id === "clear") {
+            clearData('c')
 
         } else if (event.target.id === "equals") {
             calculate();
