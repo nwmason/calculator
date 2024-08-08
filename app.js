@@ -21,9 +21,11 @@ function appendNumber(number) {
 
 function appendOperation(operation) {
     const currentEquation = workingResults.textContent;
-    if (isNaN(currentEquation.slice(-2))) {
+    if (isNaN(currentEquation.slice(-2))
+    && currentEquation.slice(-1) !== "%") {
         return
-    } else if (currentEquation.length === 0) {
+    } else if (currentEquation.length === 0
+        || currentEquation.slice(-1) === ".") {
         return
     } else {
         workingResults.innerHTML += " " + operation + " ";
