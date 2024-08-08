@@ -27,27 +27,42 @@ function appendOperation(operation) {
         return
     } else {
         workingResults.innerHTML += " " + operation + " ";
+        decimalCount = 0
+        percentCount = 0
     }
 }
 
 function appendDecimal() {
     const currentEquation = workingResults.textContent;
 
-    if (decimalCount === 0) {
+    if (decimalCount === 0 && percentCount === 0) {
         if (isNaN(currentEquation.slice(-2))) {
             workingResults.textContent += "0.";
-            decimalCount++
+            decimalCount++;
 
         } else if (currentEquation.length === 0) {
             workingResults.textContent += "0.";
-            decimalCount++
+            decimalCount++;
 
         } else {
             workingResults.textContent += ".";
-            decimalCount++
+            decimalCount++;
         }
     } else {
         return
+    }
+}
+
+function appendPercent() {
+    const currentEquation = workingResults.textContent;
+
+    if (percentCount === 0 && decimalCount === 0) {
+        if (isNaN(currentEquation.slice(-2)) 
+            || isNaN(currentEquation.slice(-1)) ) {
+        } else if (currentEquation.length !== 0){
+            workingResults.textContent += "%";
+            percentCount++;
+        }
     }
 }
 
@@ -55,13 +70,19 @@ function clearData(clearMethod) {
     const currentEquation = workingResults.textContent;
 
     if (clearMethod === 'c') {
-        if (isNaN(currentEquation.slice(-2))) {
+        if (isNaN(currentEquation.slice(-2))
+        && currentEquation.slice(-1) !== "%"
+        && currentEquation.slice(-1) !== ".") {
             workingResults.textContent = currentEquation.slice(0,-3);
         } else {
             workingResults.textContent = currentEquation.slice(0, -1);
+            percentCount = 0;
+            decimalCount = 0;
         }
     } else {
         workingResults.textContent = ""
+        percentCount = 0;
+        decimalCount = 0;
     }
 }
 
@@ -69,6 +90,7 @@ const buttons = document.querySelectorAll(".calculator-button");
 const workingResults = document.querySelector(".results-screen-typing");
 const finalResults = document.querySelector(".results-screen-result");
 let decimalCount = 0
+let percentCount = 0
 
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", (event) => {
@@ -77,6 +99,7 @@ for (let i = 0; i < buttons.length; i++) {
             appendNumber(event.target.id);
 
         } else if (event.target.id === "percent") {
+            appendPercent();
 
         } else if (event.target.id === ".") {
             appendDecimal();
@@ -92,7 +115,6 @@ for (let i = 0; i < buttons.length; i++) {
 
         } else {
             appendOperation(event.target.id);
-            decimalCount--
         }
     });
 }
