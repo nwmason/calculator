@@ -76,10 +76,13 @@ function clearData(clearMethod) {
         && currentEquation.slice(-1) !== "%"
         && currentEquation.slice(-1) !== ".") {
             workingResults.textContent = currentEquation.slice(0,-3);
-        } else {
+        } else if (currentEquation.slice(-1) === "%"
+                    || currentEquation.slice(-1) === ".") {
             workingResults.textContent = currentEquation.slice(0, -1);
             percentCount = 0;
             decimalCount = 0;
+        } else {
+            workingResults.textContent = currentEquation.slice(0, -1);
         }
     } else {
         workingResults.textContent = ""
