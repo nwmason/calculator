@@ -2,15 +2,24 @@ function calculate() {
 
 }
 
+function errorMessage() {
+
+}
+
 function appendNumber(number) {
     workingResults.innerHTML += number
 }
 
-function appendOperation() {
-
+function appendOperation(operation) {
+    const currentEquation = workingResults.textContent;
+    if (isNaN(currentEquation.slice(-2))) {
+        return
+    } else {
+        workingResults.innerHTML += " " + operation + " ";
+    }
 }
 
-function errorMessage() {
+function clearData() {
 
 }
 
@@ -22,8 +31,20 @@ for (let i = 0; i < buttons.length; i++) {
 
         if (isNaN(event.target.id) === false) {
             appendNumber(event.target.id);
-        } else {
 
+        } else if (event.target.id === "percent") {
+
+        } else if (event.target.id === "decimal") {
+
+        } else if (event.target.id === "all-clear" ) {
+
+        } else if (event.target.id === "clear") {
+
+        } else if (event.target.id === "equals") {
+            calculate();
+
+        } else {
+            appendOperation(event.target.id);
         }
     });
 }
