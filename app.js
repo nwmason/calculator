@@ -23,8 +23,31 @@ function appendOperation(operation) {
     const currentEquation = workingResults.textContent;
     if (isNaN(currentEquation.slice(-2))) {
         return
+    } else if (currentEquation.length === 0) {
+        return
     } else {
         workingResults.innerHTML += " " + operation + " ";
+    }
+}
+
+function appendDecimal() {
+    const currentEquation = workingResults.textContent;
+
+    if (decimalCount === 0) {
+        if (isNaN(currentEquation.slice(-2))) {
+            workingResults.textContent += "0.";
+            decimalCount++
+
+        } else if (currentEquation.length === 0) {
+            workingResults.textContent += "0.";
+            decimalCount++
+
+        } else {
+            workingResults.textContent += ".";
+            decimalCount++
+        }
+    } else {
+        return
     }
 }
 
@@ -45,6 +68,7 @@ function clearData(clearMethod) {
 const buttons = document.querySelectorAll(".calculator-button");
 const workingResults = document.querySelector(".results-screen-typing");
 const finalResults = document.querySelector(".results-screen-result");
+let decimalCount = 0
 
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", (event) => {
@@ -54,7 +78,8 @@ for (let i = 0; i < buttons.length; i++) {
 
         } else if (event.target.id === "percent") {
 
-        } else if (event.target.id === "decimal") {
+        } else if (event.target.id === ".") {
+            appendDecimal();
 
         } else if (event.target.id === "all-clear" ) {
             clearData('ac')
@@ -67,6 +92,7 @@ for (let i = 0; i < buttons.length; i++) {
 
         } else {
             appendOperation(event.target.id);
+            decimalCount--
         }
     });
 }
