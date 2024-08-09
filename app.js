@@ -132,7 +132,7 @@ function appendDecimal() {
 function appendPercent() {
     const currentEquation = workingResults.textContent;
 
-    if (percentCount === 0 && decimalCount === 0) {
+    if (percentCount === 0) {
         if (isNaN(currentEquation.slice(-2)) 
             || isNaN(currentEquation.slice(-1)) ) {
         } else if (currentEquation.length !== 0){
