@@ -13,36 +13,26 @@ function equaltsTo() {
 }
 
 function calculate() {
-    let splitEquation = workingResults.textContent.split(" ")
-    let addition = null
-    let subtraction = null
-    let multiplication = null
-    let division = null
-    let operationIndex = null
+    let splitEquation = workingResults.textContent.split(" ");
+    let num1 = splitEquation[0]
+    let num2 = splitEquation[2]
 
-    for (let i = 0; i < splitEquation.length; i++) {
-        if (!isNaN(parseFloat(splitEquation[i]))) {
-        } else {
-            operationIndex = i
-            }
-        }  
-
-    switch(splitEquation[operationIndex]) {
+    switch(splitEquation[1]) {
         case '+':
             console.log("addition");
-            result = parseFloat(splitEquation[operationIndex-1]) + parseFloat(splitEquation[operationIndex+1])
+            result = parseFloat(num1) + parseFloat(num2)
             break;
         case '-':
             console.log("subtraction");
-            result = parseFloat(splitEquation[operationIndex-1]) - parseFloat(splitEquation[operationIndex+1])
+            result = parseFloat(num1) - parseFloat(num2)
             break;
         case 'x':
             console.log("multiplication");
-            result = parseFloat(splitEquation[operationIndex-1]) * parseFloat(splitEquation[operationIndex+1])
+            result = parseFloat(num1) * parseFloat(num2)
             break;
         case '÷':
             console.log("division");
-            result = parseFloat(splitEquation[operationIndex-1]) / parseFloat(splitEquation[operationIndex+1])
+            result = parseFloat(num1) / parseFloat(num2)
             break;
         case '%':
             console.log(percent);
@@ -51,6 +41,7 @@ function calculate() {
             finalResults.textContent = workingResults.textContent
     }
     finalResults.textContent = result;
+    // num1 = result
 }
 
 function errorMessage(error) {
@@ -131,6 +122,7 @@ function clearData(clearMethod) {
         && currentEquation.slice(-1) !== "%"
         && currentEquation.slice(-1) !== ".") {
             workingResults.textContent = currentEquation.slice(0,-3);
+            operationCount = 0;
         } else if (currentEquation.slice(-1) === "%"
                     || currentEquation.slice(-1) === ".") {
             workingResults.textContent = currentEquation.slice(0, -1);
