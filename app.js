@@ -1,3 +1,16 @@
+function equaltsTo() {
+    if (workingResults.textContent.length === 0) {
+        return
+    } else if (workingResults.textContent.slice(-1) === "%") {
+        calculate();
+    } else if (isNaN(workingResults.textContent.slice(-2))
+            || workingResults.textContent.slice(-1) === ".") {
+        errorMessage("ERROR: IMPROPER EQUATION");
+    } else {
+        calculate();
+    }
+}
+
 function calculate() {
 
 }
@@ -116,8 +129,7 @@ for (let i = 0; i < buttons.length; i++) {
             clearData('c')
 
         } else if (event.target.id === "equals") {
-            calculate();
-
+            equaltsTo();
         } else {
             appendOperation(event.target.id);
         }
