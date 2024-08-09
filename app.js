@@ -7,7 +7,6 @@ function equaltsTo() {
             || workingResults.textContent.slice(-1) === ".") {
         errorMessage("ERROR: IMPROPER EQUATION");
     } else {
-        operationCount = 0
         calculate();
     }
 }
@@ -34,14 +33,15 @@ function calculate() {
             console.log("division");
             result = parseFloat(num1) / parseFloat(num2)
             break;
-        case '%':
-            console.log(percent);
-            break;
         default:
             finalResults.textContent = workingResults.textContent
     }
     finalResults.textContent = result;
-    // num1 = result
+    resultsShown = 1
+    operationCount = 0
+    decimalCount = 0
+    percentCount = 0
+
 }
 
 function errorMessage(error) {
@@ -55,8 +55,19 @@ function errorMessage(error) {
 
 function appendNumber(number) {
     if (workingResults.textContent.length > 35) {
-        errorMessage("ERROR: SCREEN OVERFLOW");
+        errorMessage("ERROR: OVERFLOW");
+        operationCount = 1;
+        decimalCount = 1;
+        percentCount = 1;
     } else if(percentCount === 1) {
+    } else if(resultsShown === 1) {
+        workingResults.textContent = "";
+        finalResults.textContent = "";
+        num1 = 0
+        num2 = 0
+        resultsShown = 0
+
+        workingResults.textContent += number;
     } else {
         workingResults.textContent += number;
     }
@@ -72,8 +83,14 @@ function appendOperation(operation) {
         return
     } else if (operationCount === 1) {
         return
-    } else {
+    } else if (resultsShown === 1) {
+        num1 = finalResults.textContent;
+        workingResults.textContent = num1;
+        finalResults.textContent = "";
         workingResults.innerHTML += " " + operation + " ";
+        resultsShown = 0;
+    } else {
+        workingResults.textContent += " " + operation + " ";
         decimalCount = 0
         percentCount = 0
         operationCount++
@@ -147,6 +164,7 @@ const finalResults = document.querySelector(".results-screen-result");
 let decimalCount = 0
 let percentCount = 0
 let operationCount = 0
+let resultsShown = 0
 
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", (event) => {
