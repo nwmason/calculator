@@ -5,7 +5,7 @@ function equaltsTo() {
         calculate();
     } else if (isNaN(workingResults.textContent.slice(-2))
             || workingResults.textContent.slice(-1) === ".") {
-        errorMessage("ERROR: IMPROPER EQUATION");
+        errorMessage("ERROR: UNFINISHED");
     } else {
         calculate();
     }
@@ -15,6 +15,17 @@ function calculate() {
     let splitEquation = workingResults.textContent.split(" ");
     let num1 = splitEquation[0]
     let num2 = splitEquation[2]
+
+    if (num1 !== undefined && num2 !== undefined) {
+        console.log(num1.slice(0,-2))
+        if (num1.slice(-1) === "%") {
+            num1 = parseFloat(num1.slice(0, -1) / 100)
+            console.log(num1)
+        }
+        if (num2.slice(-1) === "%") {
+            num2 = parseFloat(num2.slice(0, -1)) / 100
+        }
+    }
 
     switch(splitEquation[1]) {
         case '+':
@@ -34,7 +45,7 @@ function calculate() {
             result = parseFloat(num1) / parseFloat(num2)
             break;
         default:
-            finalResults.textContent = workingResults.textContent
+            result = workingResults.textContent
     }
     finalResults.textContent = result;
     resultsShown = 1
