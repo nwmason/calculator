@@ -1,6 +1,6 @@
 # A "Simple" Calculator
 
-Looking back on this project and my initial approach, saying I was in over my head is an understatement. Setting up the initial calculator went without a hitch, issues arose when I began figuring out how to calculate the entered equations.
+Reflecting on this project and my initial approach, my aspirations for this project put me in over my head at the start. Setting up the initial calculator went without a hitch, issues arose when I began figuring out how to calculate the entered equations.
 
 I was insistant at the beginning that I would allow longer, multi-operation equations that would all seamlessly calculate from a string without use of eval() or other, equally not good solutions. This project was at a standstill until I realized I simply do not have the knowledge to accomplish this yet and settled for the current iteration.
 
